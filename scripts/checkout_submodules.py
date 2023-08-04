@@ -41,7 +41,6 @@ ALL_PLATFORMS = set([
     'mbed',
     'nrfconnect',
     'qpg',
-    'stm32',
     'telink',
     'tizen',
     'webos',
