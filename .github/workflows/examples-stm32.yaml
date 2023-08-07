@@ -60,7 +60,7 @@ jobs:
               run: |
                   ./scripts/run_in_build_env.sh \
                      "./scripts/examples/gn_stm32_example.sh \
-                   examples/lighting-app/stm32/  out/lighting-app  --target STM32WB5MM-DK \  
+                   examples/lighting-app/stm32/  out/lighting-app  STM32WB5MM-DK \  
                      "
             - name: Build Matter SDK library
               timeout-minutes: 5

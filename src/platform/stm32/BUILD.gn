@@ -121,6 +121,7 @@ static_library("stm32") {
       #"../OpenThread/GenericThreadStackManagerImpl_OpenThread.cpp",
       "../OpenThread/OpenThreadUtils.cpp",
       "../OpenThread/DnssdImpl.cpp",
+      "../OpenThread/OpenThreadDnssdImpl.cpp",
       "ThreadStackManagerImpl.h",
       "ConnectivityManagerImpl.cpp",
       "ConnectivityManagerImpl.h",
