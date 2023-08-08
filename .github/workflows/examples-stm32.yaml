@@ -59,8 +59,10 @@ jobs:
               timeout-minutes: 20
               run: |
                   ./scripts/run_in_build_env.sh \
-                     "./scripts/examples/gn_stm32_example.sh \
-                   examples/lighting-app/stm32/  out/lighting-app  STM32WB5MM-DK \  
+                     "./scripts/build/build_examples.py \
+                     --target stm32-STM32WB5MM-DK-light \
+                    build \
+                   --copy-artifacts-to out/artifacts \  
                      "
         
             - name: Uploading Size Reports

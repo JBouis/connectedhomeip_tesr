@@ -33,6 +33,7 @@ from builders.qpg import QpgApp, QpgBoard, QpgBuilder
 from builders.telink import TelinkApp, TelinkBoard, TelinkBuilder
 from builders.ti import TIApp, TIBoard, TIBuilder
 from builders.tizen import TizenApp, TizenBoard, TizenBuilder
+from builders.stm32 import stm32App, stm32Board, stm32Builder
 
 from .target import BuildTarget, TargetPart
 
@@ -561,6 +562,21 @@ def BuildQorvoTarget():
     return target
 
 
+def Buildstm32Target():
+    target = BuildTarget('stm32', stm32Builder)
+
+    # board
+    target.AppendFixedTargets([
+        TargetPart('STM32WB5MM-DK', board=stm32Board.stm32),
+    ])
+
+    # apps
+    target.AppendFixedTargets([
+        TargetPart('light', app=stm32App.LIGHT),
+    ])
+
+    return target
+
 def BuildTizenTarget():
     target = BuildTarget('tizen', TizenBuilder)
 
@@ -720,6 +736,7 @@ BUILD_TARGETS = [
     BuildNrfTarget(),
     BuildNrfNativeTarget(),
     BuildQorvoTarget(),
+    Buildstm32Target(),
     BuildTizenTarget(),
     BuildTelinkTarget(),
     BuildOpenIotSdkTargets(),
