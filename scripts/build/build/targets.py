@@ -567,7 +567,7 @@ def BuildStm32Target():
 
     # board
     target.AppendFixedTargets([
-        TargetPart('STM32WB5MM-DK', board=stm32Board.stm32),
+        TargetPart('STM32WB5MM-DK', board=stm32Board.stm32wb5mm_dk),
     ])
 
     # apps
