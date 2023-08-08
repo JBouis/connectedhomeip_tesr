@@ -154,7 +154,7 @@ else
             shift
             ;;
         --use_ot_coap_lib)
-            optArgs+="use_st_thread_lib=true chip_openthread_target=$ST_THREAD_TARGET openthread_external_platform=\"""\" use_thread_coap_lib=true "
+            optArgs+="use_st_thread_lib=true chip_openthread_target=$ST_THREAD_TARGET openthread_external_platform=\"""\" use_thread_coap_lib=false "
             shift
             ;;
         *)
