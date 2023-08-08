@@ -44,10 +44,10 @@ class stm32App(Enum):
 
 
 class stm32Board(Enum):
-    stm32 = 1
+    stm32wb5mm_dk = 1
 
     def GnArgName(self):
-        if self == stm32Board.stm32:
+        if self == stm32Board.stm32wb5mm_dk:
             return 'STM32WB5MM-DK'
         else:
             raise Exception('Unknown board #: %r' % self)
@@ -59,7 +59,7 @@ class stm32Builder(GnBuilder):
                  root,
                  runner,
                  app: stm32App = stm32App.LIGHT,
-                 board: stm32Board = stm32Board.stm32,
+                 board: stm32Board = stm32Board.stm32wb5mm_dk,
                  enable_rpcs: bool = False):
         super(stm32Builder, self).__init__(
             root=app.BuildRoot(root),

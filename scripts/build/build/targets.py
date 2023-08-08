@@ -562,7 +562,7 @@ def BuildQorvoTarget():
     return target
 
 
-def Buildstm32Target():
+def BuildStm32Target():
     target = BuildTarget('stm32', stm32Builder)
 
     # board
@@ -736,7 +736,7 @@ BUILD_TARGETS = [
     BuildNrfTarget(),
     BuildNrfNativeTarget(),
     BuildQorvoTarget(),
-    Buildstm32Target(),
+    BuildStm32Target(),
     BuildTizenTarget(),
     BuildTelinkTarget(),
     BuildOpenIotSdkTargets(),
