@@ -87,7 +87,7 @@ def BuildHostFakeTarget():
 def BuildHostTarget():
     native_board_name = HostBoard.NATIVE.BoardName()
     cross_compile = (HostBoard.NATIVE.PlatformName() == 'linux') and (
-        native_board_name != HostBoard.ARM64.BoardName())
+            native_board_name != HostBoard.ARM64.BoardName())
 
     target = BuildTarget(HostBoard.NATIVE.PlatformName(), HostBuilder)
 
@@ -135,12 +135,13 @@ def BuildHostTarget():
 
     if (HostBoard.NATIVE.PlatformName() == 'darwin'):
         app_parts.append(TargetPart('darwin-framework-tool',
-                         app=HostApp.CHIP_TOOL_DARWIN))
+                                    app=HostApp.CHIP_TOOL_DARWIN))
 
     target.AppendFixedTargets(app_parts)
 
     target.AppendModifier('nodeps', enable_ble=False, enable_wifi=False, enable_thread=False,
-                          crypto_library=HostCryptoLibrary.MBEDTLS, use_clang=True).ExceptIfRe('-(clang|noble|boringssl|mbedtls)')
+                          crypto_library=HostCryptoLibrary.MBEDTLS, use_clang=True).ExceptIfRe(
+        '-(clang|noble|boringssl|mbedtls)')
 
     target.AppendModifier('platform-mdns', use_platform_mdns=True)
     target.AppendModifier('minmdns-verbose', minmdns_high_verbosity=True)
@@ -567,7 +568,7 @@ def BuildStm32Target():
 
     # board
     target.AppendFixedTargets([
-        TargetPart('STM32WB5MM-DK', board=stm32Board.stm32wb5mm_dk),
+        TargetPart('STM32WB5MM-DK', board=stm32Board.STM32WB55XX),
     ])
 
     # apps
@@ -576,6 +577,7 @@ def BuildStm32Target():
     ])
 
     return target
+
 
 def BuildTizenTarget():
     target = BuildTarget('tizen', TizenBuilder)

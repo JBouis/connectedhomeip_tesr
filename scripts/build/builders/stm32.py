@@ -44,10 +44,10 @@ class stm32App(Enum):
 
 
 class stm32Board(Enum):
-    stm32wb5mm_dk = 1
+    STM32WB55XX = auto()
 
-    def GnArgName(self):
-        if self == stm32Board.stm32wb5mm_dk:
+    def GetIC(self):
+        if self == stm32Board.STM32WB55XX:
             return 'STM32WB5MM-DK'
         else:
             raise Exception('Unknown board #: %r' % self)
@@ -59,19 +59,30 @@ class stm32Builder(GnBuilder):
                  root,
                  runner,
                  app: stm32App = stm32App.LIGHT,
-                 board: stm32Board = stm32Board.stm32wb5mm_dk,
+                 board: stm32Board = stm32Board.STM32WB55XX,
+                 chip_build_libshell: bool = False,
+                 chip_logging: bool = True,
+                 enable_factory: bool = False,
+                 enable_rotating_device_id: bool = False,
+                 enable_ota_requestor: bool = False,
+                 enable_lwip_ip6_hook: bool = False,
                  enable_rpcs: bool = False):
         super(stm32Builder, self).__init__(
             root=app.BuildRoot(root),
             runner=runner)
-        self.app = app
+
         self.board = board
-        self.enable_rpcs = enable_rpcs
+        self.app = app
+
+        stm32_chip = self.board.GetIC()
+        self.extra_gn_options = ['stm32_ic_family="%s"' % stm32_chip]
+
+        self.extra_gn_options.append('chip_config_network_layer_ble=true')
+        self.extra_gn_options.append('treat_warnings_as_errors=false')
 
     def GnBuildArgs(self):
-        args = ['stm32_target_ic=\"%s\"' % self.board.GnArgName()]
-       
-        return args
+
+        return self.extra_gn_options
 
     def build_outputs(self):
         items = {}
