@@ -59,7 +59,7 @@ jobs:
               timeout-minutes: 20
               run: |
                   ./scripts/run_in_build_env.sh \
-                     "./scripts/build/build_examples.py --target stm32-STM32WB5MM-DK-light build   
+                     "./scripts/build/build_examples.py  --target stm32-STM32WB5MM-DK-light  build
                      "
         
             - name: Uploading Size Reports
