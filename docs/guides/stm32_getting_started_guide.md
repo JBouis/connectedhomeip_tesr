@@ -19,7 +19,7 @@ platform that uses stm32 FreeRTOS SDK.
 
 The stm32 platform is supported on:
 
--   [stm32wb55-dk](http://www.stm32micro.com/en/goods/proinfo/36.html)
+-  [STM32WB5MM-DK](https://www.st.com/en/evaluation-tools/stm32wb5mm-dk.html)
 
 ## Matter Example Applications
 
@@ -75,7 +75,48 @@ There is one commissioning modes supported by stm32 platform:
     ```
     ./chip-tool pairing ble-thread <node_id> <hex:xxx> <pin_code> <discriminator>
     ```
+### Bluetooth LE advertising
 
+In this example, to commission the device onto a Matter network, it must be
+discoverable over Bluetooth LE. After powering up the device, the device will advertise
+automatically for 30 seconds. After this delay, you will need to reset the device to start
+the commissioning procedure.
+
+### Bluetooth LE rendezvous    
+
+In Matter, the commissioning procedure is done over Bluetooth LE between a
+Matter device and the Matter controller(here the Android app), where the controller has the
+commissioner role.
+
+To start the rendezvous, the controller must get the commissioning information
+from the Matter device. The data payload is encoded within a QR code, printed to
+the UART console. 
+
+### Thread provisioning    
+
+The provisioning operation, which is the Last part of the rendezvous procedure,
+involves sending the Thread network credentials from the Matter
+controller to the Matter device. As a result, the device joins the Thread network
+via a OpenThread border Router (OTBR) and can communicate with other devices in the network.
+
+
+## Flash the application 
+ 
+ The co processor binary  and fuse  are available [here](https://github.com/stm32-hotspot/stm32wb-matter-device-over-thread/tree/main/Projects/STM32WB_Copro_Wireless_Binaries/STM32WB5x)
+ Dynamic Concurrent Mode BLE Thread for Matter (Supports Full BLE Stack 5.2 certified and Minimal Thread Device ready v1.3)
+
+
+ 1) flash the fuze 
+
+  sudo st-flash  write stm32wb5x_FUS_fw_for_fus_0_5_3.bin  0x080EC000 
+
+2 ) the coprocessor binary
+
+    sudo st-flash  write  stm32wb5x_BLE_Thread_ForMatter_fw.bin 0x08085000 
+
+3) the application 
+
+     sudo st-flash write chip-stm32-lighting-example.bin 0x08000000 
 
 ## Factory
 
