@@ -1,4 +1,4 @@
-# Matter stm32 Lighting Example
+# Matter STM32 Lighting Example
 
 This example demonstrates the Matter Lighting application on stm32 platform.
 
@@ -48,4 +48,3 @@ After successful commissioning, use `chip-tool` to control the board
 
 
 
-These default pins are defined at `examples/platform/stm32/LEDWidget.h`
